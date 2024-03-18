@@ -1,5 +1,8 @@
 package Interfaces;
 
-public interface ArmazenamentoMockInterface {
+import java.util.List;
 
+public interface ArmazenamentoMockInterface {
+	public List<String> getLinesFromStorageFile();
+	
 }
