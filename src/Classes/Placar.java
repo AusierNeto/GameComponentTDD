@@ -18,9 +18,8 @@ public class Placar {
 		return mockClass.getLinesFromStorageFile();
 	}
 
-	public void getAllPointsOfUser(String string) {
-		// TODO Auto-generated method stub
-		
+	public String getAllPointsOfUser(String userName) {
+		return mockClass.getAllPointsFromGivenUserByType(userName);
 	}
 
 }
