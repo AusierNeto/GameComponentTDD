@@ -1,2 +1,0 @@
-Usuário Player1 recebeu 0 ponto(s) do tipo Hearts
-Usuário NoPointsPlayer recebeu 0 ponto(s) do tipo Star

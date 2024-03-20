@@ -22,7 +22,7 @@ public class ArmazenamentoMock extends Armazenamento implements ArmazenamentoMoc
 	}
 
 	@Override
-	public String getAllPointsFromGivenUserByType(String userName) {
+	public String getAllPointsFromGivenUser(String userName) {
 		if (userName == "Usuario")
 			return "10 - Star\n10 - Hearts\n10-Flowers";
 		else 

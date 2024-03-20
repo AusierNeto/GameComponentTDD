@@ -78,4 +78,16 @@ public class Armazenamento implements ArmazenamentoInterface{
 		return usersWithPoints;
 	}
 
+	@Override
+	public String getAllPointsFromGivenUser(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getRanking(String pointType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
