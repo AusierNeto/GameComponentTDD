@@ -13,8 +13,8 @@ public class Armazenamento {
 	}
 
 	public void savePoints(User userObject, int points, String pointType) {
-		String savePointsString = "O usuário " + userObject.userName + " recebeu " + 
-									points + " pontos do tipo " + pointType;
+		String savePointsString = "Usuário " + userObject.userName + " recebeu " + 
+									points + " ponto(s) do tipo " + pointType;
 		FileHandle.writeInformation(savePointsString);
 		
 		// Save user references

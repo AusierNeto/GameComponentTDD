@@ -16,4 +16,9 @@ public class ArmazenamentoMock implements ArmazenamentoMockInterface {
 		return FileHandle.readFileLines("MockStorage.txt");
 	}
 
+	@Override
+	public void savePoints(String userName, int numberOfPoints, String pointType) {
+		FileHandle.writeInformation("MockStorage.txt", "Usuário " + userName + " recebeu " + numberOfPoints + " ponto(s) do tipo " + pointType);
+	} 
+
 }
