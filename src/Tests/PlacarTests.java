@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Classes.ArmazenamentoMock;
+import Classes.FileHandle;
 import Classes.Placar;
 
 
@@ -23,7 +24,7 @@ class PlacarTests {
 	void receivePointsByUserTest() {
 		p.registerPoints("Usuario", "Star", 10);
 		assertEquals("Usuário Usuario recebeu 10 ponto(s) do tipo Star", 
-				p.getFileLines().get(0));
+				FileHandle.readFileLines("MockStorage.txt").get(0));
 	}
 	
 	@Test

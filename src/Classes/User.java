@@ -26,8 +26,8 @@ public class User {
 	}
 	
 	public List<String> getUserPointTypes() {
-		List<String> keyList = new ArrayList<>(this.pointsDict.keySet());
-		return keyList;
+		List<String> typesList = new ArrayList<>(this.pointsDict.keySet());
+		return typesList;
 	}
 
 }

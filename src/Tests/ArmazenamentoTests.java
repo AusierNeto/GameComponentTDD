@@ -10,20 +10,20 @@ import Classes.User;
 
 class ArmazenamentoTests {
 	Armazenamento storage;
-	String testUser;
+	String testUserNameString;
 	
 	@BeforeEach
 	void testSetup() {
 		storage = new Armazenamento();
-		testUser = "Player1";
+		testUserNameString = "Player1";
 	}
 
 	@Test
 	void storagePointsOfSingleTypeOnJustOneUser() {
 		int points = 10;
 		String pointType = "Star";
-		storage.savePoints(testUser, points, pointType);
-		assertEquals(10, storage.getPointsFromUserByType(testUser, pointType));
+		storage.savePoints(testUserNameString, points, pointType);
+		assertEquals(10, storage.getPointsFromUserByType(testUserNameString, pointType));
 	}
 	
 	@Test
@@ -31,10 +31,10 @@ class ArmazenamentoTests {
 		int points = 10;
 		String pointTypeFirst = "Star";
 		String pointTypeSecond = "Hearts";
-		storage.savePoints(testUser, points, pointTypeFirst);
-		assertEquals(10, storage.getPointsFromUserByType(testUser, pointTypeFirst));
-		storage.savePoints(testUser, points, pointTypeSecond);
-		assertEquals(10, storage.getPointsFromUserByType(testUser, pointTypeSecond));
+		storage.savePoints(testUserNameString, points, pointTypeFirst);
+		assertEquals(10, storage.getPointsFromUserByType(testUserNameString, pointTypeFirst));
+		storage.savePoints(testUserNameString, points, pointTypeSecond);
+		assertEquals(10, storage.getPointsFromUserByType(testUserNameString, pointTypeSecond));
 	} 
 	
 	
@@ -43,47 +43,47 @@ class ArmazenamentoTests {
 		int points = 10;
 		String pointType = "Star";
 		
-		storage.savePoints(testUser, points, pointType);
-		assertEquals(10, storage.getPointsFromUserByType(testUser, pointType));
-		storage.savePoints(testUser, points, pointType);
-		assertEquals(20, storage.getPointsFromUserByType(testUser, pointType));
+		storage.savePoints(testUserNameString, points, pointType);
+		assertEquals(10, storage.getPointsFromUserByType(testUserNameString, pointType));
+		storage.savePoints(testUserNameString, points, pointType);
+		assertEquals(20, storage.getPointsFromUserByType(testUserNameString, pointType));
 		
 	}
 	
 	@Test
 	void getAllPointTypeForSpecificUser() {
-		storage.savePoints(testUser, 1, "Star");
-		storage.savePoints(testUser, 1, "Coin");
-		storage.savePoints(testUser, 1, "Hearts");
-		assertEquals(true, storage.getAllPointTypeByUser(testUser).contains("Star"));
-		assertEquals(true, storage.getAllPointTypeByUser(testUser).contains("Coin"));
-		assertEquals(true, storage.getAllPointTypeByUser(testUser).contains("Hearts"));
+		storage.savePoints(testUserNameString, 1, "Star");
+		storage.savePoints(testUserNameString, 1, "Coin");
+		storage.savePoints(testUserNameString, 1, "Hearts");
+		assertEquals(true, storage.getAllPointTypeByUser(testUserNameString).contains("Star"));
+		assertEquals(true, storage.getAllPointTypeByUser(testUserNameString).contains("Coin"));
+		assertEquals(true, storage.getAllPointTypeByUser(testUserNameString).contains("Hearts"));
 	}
 	
 	@Test
 	void getAllUsersWithPoints() {
-		storage.savePoints(testUser, 0, "Hearts");
+		storage.savePoints(testUserNameString, 0, "Hearts");
 		String genericUserName = "NoPointsPlayer";
 		storage.savePoints(genericUserName, 1, "Star");
-		assertEquals(false, storage.getUsersWithPoints().contains(testUser));
+		assertEquals(false, storage.getUsersWithPoints().contains(testUserNameString));
 		assertEquals(true, storage.getUsersWithPoints().contains(genericUserName));
 	}
 	
 	@Test
 	void everyUserHaveZeroPoints() {
-		storage.savePoints(testUser, 0, "Hearts");
+		storage.savePoints(testUserNameString, 0, "Hearts");
 		String genericUserName = "NoPointsPlayer";
 		storage.savePoints(genericUserName, 0, "Star");
-		assertEquals(false, storage.getUsersWithPoints().contains(testUser));
+		assertEquals(false, storage.getUsersWithPoints().contains(testUserNameString));
 		assertEquals(false, storage.getUsersWithPoints().contains(genericUserName));
 	}
 	
 	@Test
 	void everyUserHaveAtLeastOnePoint() {
-		storage.savePoints(testUser, 1, "Hearts");
+		storage.savePoints(testUserNameString, 1, "Hearts");
 		String genericUserName = "NoPointsPlayer";
 		storage.savePoints(genericUserName, 1, "Star");
-		assertEquals(true, storage.getUsersWithPoints().contains(testUser));
+		assertEquals(true, storage.getUsersWithPoints().contains(testUserNameString));
 		assertEquals(true, storage.getUsersWithPoints().contains(genericUserName));
 	}
 

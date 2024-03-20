@@ -51,18 +51,8 @@ public class Armazenamento implements ArmazenamentoInterface{
 		}
 		return 0;
 	}
-
-	@Override
-	public List<String> getAllPointTypeByUser(String userName) {
-		for (User currentUser: this.userList) {
-			if (currentUser.userName == userName) {
-				return currentUser.getUserPointTypes();
-			}
-		}
-		
-		return null;
-	}
 	
+	@Override
 	public List<String> getUsersWithPoints() {
 		List<String> usersWithPoints = new ArrayList<String>();
 		for (User currentUser: this.userList) {
@@ -76,6 +66,17 @@ public class Armazenamento implements ArmazenamentoInterface{
 			}
 		}
 		return usersWithPoints;
+	}
+	
+	@Override
+	public List<String> getAllPointTypeByUser(String userName) {
+		for (User currentUser: this.userList) {
+			if (currentUser.userName == userName) {
+				return currentUser.getUserPointTypes();
+			}
+		}
+		
+		return null;
 	}
 
 	@Override

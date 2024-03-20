@@ -1,14 +1,15 @@
 package Classes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Placar {
 
-	private ArmazenamentoMock mockClass;
+	//private ArmazenamentoMock mockClass;
 	private Armazenamento armazenamentoObject; 
 	
 	public Placar(ArmazenamentoMock mockArmazenamento) {
-		this.mockClass = mockArmazenamento;
+		this.armazenamentoObject = mockArmazenamento;
 	}
 	
 	public Placar(Armazenamento armazenamentoObject) {
@@ -16,23 +17,34 @@ public class Placar {
 	}
 
 	public void registerPoints(String userName, String pointType, int numberOfPoints) {
-		if (this.mockClass != null)
-			this.mockClass.savePoints(userName, numberOfPoints, pointType);
+		if (this.armazenamentoObject != null)
+			this.armazenamentoObject.savePoints(userName, numberOfPoints, pointType);
 		else {
 			
 		}
 	}
-
-	public List<String> getFileLines() {
-		return mockClass.getLinesFromStorageFile();
+	
+	private String formatPointsOutput(List<String> pointTypes, List<Integer> pointsQty) {
+		String outputString = "";
+		for (int i=0;i<pointTypes.size();i++) {
+			outputString += pointsQty.get(i) + " pontos do tipo " + pointTypes.get(i) + "\n";
+		}
+		return outputString;
 	}
 
 	public String getAllPointsOfUser(String userName) {
-		return mockClass.getAllPointsFromGivenUser(userName);
+		List<String> pointTypes = this.armazenamentoObject.getAllPointTypeByUser(userName);
+		List<Integer> pointsQty = new ArrayList<>();
+		
+		for (String type: pointTypes) {
+			pointsQty.add(this.armazenamentoObject.getPointsFromUserByType(userName, type));
+		}
+		
+		return formatPointsOutput(pointTypes, pointsQty);
 	}
 
 	public String getRanking(String pointType) {
-		return mockClass.getRanking(pointType);
+		return armazenamentoObject.getRanking(pointType);
 	}
 
 }
