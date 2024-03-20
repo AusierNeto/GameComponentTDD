@@ -29,4 +29,11 @@ public class ArmazenamentoMock implements ArmazenamentoMockInterface {
 			return "Usuário sem pontos";
 	}
 
+	@Override
+	public String getRanking(String pointType) {
+		if (pointType == "Star")
+			return "\"OutroUser\" com \"11\", \"Usuario\" com \"10\"";
+		return "\"TerceiroUser\" com \"50\", \"Usuario\" com \"10\"";
+	}
+
 }

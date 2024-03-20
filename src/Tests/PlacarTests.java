@@ -37,7 +37,14 @@ class PlacarTests {
 	
 	@Test
 	void getRankingByPointTypeTest() {
-		
+		p.registerPoints("Usuario", "Star", 10);
+		p.registerPoints("OutroUser", "Star", 11);
+		p.registerPoints("Usuario", "Flowers", 10);
+		p.registerPoints("TerceiroUser", "Flowers",50);
+		assertEquals("\"OutroUser\" com \"11\", \"Usuario\" com \"10\"", 
+				p.getRanking("Star"));
+		assertEquals("\"TerceiroUser\" com \"50\", \"Usuario\" com \"10\"", 
+				p.getRanking("Flowers"));
 	}
 
 }
