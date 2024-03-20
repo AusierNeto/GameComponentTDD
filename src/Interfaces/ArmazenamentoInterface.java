@@ -7,6 +7,4 @@ public interface ArmazenamentoInterface {
 	public int getPointsFromUserByType(String userName, String pointType);
 	public List<String> getAllPointTypeByUser(String userName);
 	public List<String> getUsersWithPoints();
-	public String getAllPointsFromGivenUser(String userName);
-	public String getRanking(String pointType);
 }

@@ -16,9 +16,8 @@ public class Armazenamento implements ArmazenamentoInterface{
 
 	private User searchForUserInList(String userName) {
 		for (User currentUser: this.userList) {
-			if (currentUser.userName == userName) {
+			if (currentUser.userName == userName)
 				return currentUser;
-			}
 		}
 		return null;
 	}
@@ -61,8 +60,23 @@ public class Armazenamento implements ArmazenamentoInterface{
 				currentUserTotalPoints += getPointsFromUserByType(currentUser.userName,
 						pointType);
 			}
-			if (currentUserTotalPoints > 0) {
+			if (currentUserTotalPoints > 0 && !usersWithPoints.contains(currentUser.userName)) {
 				usersWithPoints.add(currentUser.userName);
+			}
+		}
+		return usersWithPoints;
+	}
+	
+	public List<String> getUsersWithPoints(String pointType) {
+		List<String> usersWithPoints = new ArrayList<String>();
+		for (User currentUser: this.userList) {
+			int currentUserTotalPoints = 0;
+			if (getAllPointTypeByUser(currentUser.userName).contains(pointType)) {
+				currentUserTotalPoints += getPointsFromUserByType(currentUser.userName,
+						pointType);
+				if (currentUserTotalPoints > 0 && !usersWithPoints.contains(currentUser.userName)) {
+					usersWithPoints.add(currentUser.userName);
+				}
 			}
 		}
 		return usersWithPoints;
@@ -78,17 +92,4 @@ public class Armazenamento implements ArmazenamentoInterface{
 		
 		return null;
 	}
-
-	@Override
-	public String getAllPointsFromGivenUser(String userName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getRanking(String pointType) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Placar {
 
-	//private ArmazenamentoMock mockClass;
 	private Armazenamento armazenamentoObject; 
 	
 	public Placar(ArmazenamentoMock mockArmazenamento) {
@@ -17,11 +16,7 @@ public class Placar {
 	}
 
 	public void registerPoints(String userName, String pointType, int numberOfPoints) {
-		if (this.armazenamentoObject != null)
-			this.armazenamentoObject.savePoints(userName, numberOfPoints, pointType);
-		else {
-			
-		}
+		this.armazenamentoObject.savePoints(userName, numberOfPoints, pointType);
 	}
 	
 	private String formatPointsOutput(List<String> pointTypes, List<Integer> pointsQty) {
@@ -44,7 +39,9 @@ public class Placar {
 	}
 
 	public String getRanking(String pointType) {
-		return armazenamentoObject.getRanking(pointType);
+		List<String> usersWithPoints = this.armazenamentoObject.getUsersWithPoints(pointType);
+		
+		return "";
 	}
 
 }
