@@ -30,4 +30,9 @@ public class User {
 		return keyList;
 	}
 
+	public void updateUserPoints(int points, String pointType) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

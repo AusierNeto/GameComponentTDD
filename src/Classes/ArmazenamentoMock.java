@@ -4,7 +4,7 @@ import java.util.List;
 
 import Interfaces.ArmazenamentoMockInterface;
 
-public class ArmazenamentoMock implements ArmazenamentoMockInterface {
+public class ArmazenamentoMock extends Armazenamento implements ArmazenamentoMockInterface {
 
 	public ArmazenamentoMock() {
 		FileHandle.createStorageFile("MockStorage.txt");

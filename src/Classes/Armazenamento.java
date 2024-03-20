@@ -3,7 +3,9 @@ package Classes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Armazenamento {
+import Interfaces.ArmazenamentoInterface;
+
+public class Armazenamento implements ArmazenamentoInterface{
 
 	private List<User> userList;
 	
@@ -12,35 +14,61 @@ public class Armazenamento {
 		this.userList = new ArrayList<User>();
 	}
 
-	public void savePoints(User userObject, int points, String pointType) {
-		String savePointsString = "Usuário " + userObject.userName + " recebeu " + 
-									points + " ponto(s) do tipo " + pointType;
-		FileHandle.writeInformation(savePointsString);
-		
-		// Save user references
+	private User searchForUserInList(String userName) {
+		for (User currentUser: this.userList) {
+			if (currentUser.userName == userName) {
+				return currentUser;
+			}
+		}
+		return null;
+	}
+	
+	private void updateUserReferences(String userName, int points, String pointType) {
+		User userReference = searchForUserInList(userName);
+		if (userReference != null) {
+			userReference.updateUserPoints(points, pointType);
+		}
+		User userObject = new User(userName);
 		userObject.receivePoints(points, pointType);
 		userList.add(userObject);
 	}
-	
-	public int getPointsFromUserByType(User userObject, String pointType) {
+
+	@Override
+	public void savePoints(String userName, int points, String pointType) {
+		String savePointsString = "Usuário " + userName + " recebeu " + 
+				points + " ponto(s) do tipo " + pointType;
+		FileHandle.writeInformation(savePointsString);
+		this.updateUserReferences(userName, points, pointType);
+	}
+
+	@Override
+	public int getPointsFromUserByType(String userName, String pointType) {
 		for (User currentUser: this.userList) {
-			if (currentUser.userName == userObject.userName) {
+			if (currentUser.userName == userName) {
 				return currentUser.getPointsByType(pointType);
 			}
 		}
-		return -1;
+		return 0;
 	}
 
-	public List<String> getAllPointTypeByUser(User testUser) {
-		return testUser.getUserPointTypes();
+	@Override
+	public List<String> getAllPointTypeByUser(String userName) {
+		for (User currentUser: this.userList) {
+			if (currentUser.userName == userName) {
+				return currentUser.getUserPointTypes();
+			}
+		}
+		
+		return null;
 	}
-
+	
 	public List<String> getUsersWithPoints() {
 		List<String> usersWithPoints = new ArrayList<String>();
 		for (User currentUser: this.userList) {
 			int currentUserTotalPoints = 0;
-			for (String pointType: getAllPointTypeByUser(currentUser)) {
-				currentUserTotalPoints += getPointsFromUserByType(currentUser, pointType);
+			for (String pointType: getAllPointTypeByUser(currentUser.userName)) {
+				currentUserTotalPoints += getPointsFromUserByType(currentUser.userName,
+						pointType);
 			}
 			if (currentUserTotalPoints > 0) {
 				usersWithPoints.add(currentUser.userName);

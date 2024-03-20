@@ -10,12 +10,12 @@ import Classes.User;
 
 class ArmazenamentoTests {
 	Armazenamento storage;
-	User testUser;
+	String testUser;
 	
 	@BeforeEach
 	void testSetup() {
 		storage = new Armazenamento();
-		testUser = new User("Player1");
+		testUser = "Player1";
 	}
 
 	@Test
@@ -63,28 +63,28 @@ class ArmazenamentoTests {
 	@Test
 	void getAllUsersWithPoints() {
 		storage.savePoints(testUser, 0, "Hearts");
-		User genericUser = new User("NoPointsPlayer");
-		storage.savePoints(genericUser, 1, "Star");
-		assertEquals(false, storage.getUsersWithPoints().contains(testUser.userName));
-		assertEquals(true, storage.getUsersWithPoints().contains(genericUser.userName));
+		String genericUserName = "NoPointsPlayer";
+		storage.savePoints(genericUserName, 1, "Star");
+		assertEquals(false, storage.getUsersWithPoints().contains(testUser));
+		assertEquals(true, storage.getUsersWithPoints().contains(genericUserName));
 	}
 	
 	@Test
 	void everyUserHaveZeroPoints() {
 		storage.savePoints(testUser, 0, "Hearts");
-		User genericUser = new User("NoPointsPlayer");
-		storage.savePoints(genericUser, 0, "Star");
-		assertEquals(false, storage.getUsersWithPoints().contains(testUser.userName));
-		assertEquals(false, storage.getUsersWithPoints().contains(genericUser.userName));
+		String genericUserName = "NoPointsPlayer";
+		storage.savePoints(genericUserName, 0, "Star");
+		assertEquals(false, storage.getUsersWithPoints().contains(testUser));
+		assertEquals(false, storage.getUsersWithPoints().contains(genericUserName));
 	}
 	
 	@Test
 	void everyUserHaveAtLeastOnePoint() {
 		storage.savePoints(testUser, 1, "Hearts");
-		User genericUser = new User("NoPointsPlayer");
-		storage.savePoints(genericUser, 1, "Star");
-		assertEquals(true, storage.getUsersWithPoints().contains(testUser.userName));
-		assertEquals(true, storage.getUsersWithPoints().contains(genericUser.userName));
+		String genericUserName = "NoPointsPlayer";
+		storage.savePoints(genericUserName, 1, "Star");
+		assertEquals(true, storage.getUsersWithPoints().contains(testUser));
+		assertEquals(true, storage.getUsersWithPoints().contains(genericUserName));
 	}
 
 }
