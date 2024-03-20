@@ -16,7 +16,6 @@ public class ArmazenamentoMock extends Armazenamento implements ArmazenamentoMoc
 				+ numberOfPoints + " ponto(s) do tipo " + pointType);
 	}
 
-	@Override
 	public String getAllPointsFromGivenUser(String userName) {
 		if (userName == "Usuario")
 			return "10 - Star\n10 - Hearts\n10-Flowers";
@@ -24,7 +23,6 @@ public class ArmazenamentoMock extends Armazenamento implements ArmazenamentoMoc
 			return "Usuário sem pontos";
 	}
 
-	@Override
 	public String getRanking(String pointType) {
 		if (pointType == "Star")
 			return "\"OutroUser\" com \"11\", \"Usuario\" com \"10\"";

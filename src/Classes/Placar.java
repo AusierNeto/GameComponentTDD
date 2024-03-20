@@ -1,7 +1,10 @@
 package Classes;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 public class Placar {
 
@@ -38,10 +41,36 @@ public class Placar {
 		return formatPointsOutput(pointTypes, pointsQty);
 	}
 
-	public String getRanking(String pointType) {
-		List<String> usersWithPoints = this.armazenamentoObject.getUsersWithPoints(pointType);
+	private List<Map.Entry<String, Integer>> sortListBasedOnPoints(Map<String, Integer> mapa) {
+	    List<Map.Entry<String, Integer>> lista = new ArrayList<>(mapa.entrySet());
+	
+	    Comparator<Map.Entry<String, Integer>> comparator = Comparator.comparing(
+	    		Map.Entry::getValue, Comparator.reverseOrder());
+	
+	    Collections.sort(lista, comparator);
+	    return lista;
+	}
+	
+	private String formatRankingOutput(List<Map.Entry<String, Integer>> rankingList) {
+		String outputString = "";
+		int counter = 0;
+		for (Map.Entry<String, Integer> entry : rankingList) {
+            if (counter != 0)
+            	outputString += ", ";
+        	outputString += entry.getKey() + " com " + entry.getValue();
+            counter++;
+        }
 		
-		return "";
+		return outputString;
+	}
+
+	public String getRanking(String pointType) {
+		Map<String, Integer> usersWithPoints = this.armazenamentoObject.
+				getUsersWithPoints(pointType);
+		
+		List<Map.Entry<String, Integer>> outputList = sortListBasedOnPoints(usersWithPoints);
+		
+		return formatRankingOutput(outputList);
 	}
 
 }

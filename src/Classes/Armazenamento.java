@@ -1,7 +1,9 @@
 package Classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import Interfaces.ArmazenamentoInterface;
 
@@ -67,15 +69,15 @@ public class Armazenamento implements ArmazenamentoInterface{
 		return usersWithPoints;
 	}
 	
-	public List<String> getUsersWithPoints(String pointType) {
-		List<String> usersWithPoints = new ArrayList<String>();
+	public Map<String, Integer> getUsersWithPoints(String pointType) {
+		Map<String, Integer> usersWithPoints = new HashMap<>();
 		for (User currentUser: this.userList) {
 			int currentUserTotalPoints = 0;
 			if (getAllPointTypeByUser(currentUser.userName).contains(pointType)) {
 				currentUserTotalPoints += getPointsFromUserByType(currentUser.userName,
 						pointType);
-				if (currentUserTotalPoints > 0 && !usersWithPoints.contains(currentUser.userName)) {
-					usersWithPoints.add(currentUser.userName);
+				if (currentUserTotalPoints > 0 && !usersWithPoints.containsKey(currentUser.userName)) {
+					usersWithPoints.put(currentUser.userName, currentUserTotalPoints);
 				}
 			}
 		}
