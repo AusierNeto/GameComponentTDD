@@ -28,7 +28,7 @@ public class Placar {
 	}
 
 	public String getAllPointsOfUser(String userName) {
-		return mockClass.getAllPointsFromGivenUserByType(userName);
+		return mockClass.getAllPointsFromGivenUser(userName);
 	}
 
 	public String getRanking(String pointType) {

@@ -13,7 +13,7 @@ class UserTests {
 	User user;
 	
 	@BeforeEach
-	void setup() {
+	void testSetup() {
 		user = new User("Player");
 	}
 	

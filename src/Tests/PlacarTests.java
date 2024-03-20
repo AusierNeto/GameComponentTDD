@@ -14,7 +14,7 @@ class PlacarTests {
 	private Placar p;
 	
 	@BeforeEach
-	void setup() {
+	void testSetup() {
 		ArmazenamentoMock mockArmazenamento = new ArmazenamentoMock();
 		p = new Placar(mockArmazenamento);
 	}
