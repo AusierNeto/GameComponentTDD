@@ -25,12 +25,13 @@ public class Armazenamento implements ArmazenamentoInterface{
 	
 	private void updateUserReferences(String userName, int points, String pointType) {
 		User userReference = searchForUserInList(userName);
-		if (userReference != null) {
-			userReference.updateUserPoints(points, pointType);
+		if (userReference != null)
+			userReference.receivePoints(points, pointType);
+		else {
+			User userObject = new User(userName);
+			userObject.receivePoints(points, pointType);
+			userList.add(userObject);
 		}
-		User userObject = new User(userName);
-		userObject.receivePoints(points, pointType);
-		userList.add(userObject);
 	}
 
 	@Override
